@@ -3,9 +3,11 @@ using KitchenLib.Event;
 using KitchenMods;
 using System.Reflection;
 using UnityEngine;
+using System.Linq;
+using KitchenAnimalPack.Outfits;
 
 // Namespace should have "Kitchen" in the beginning
-namespace KitchenMyMod
+namespace KitchenAnimalPack
 {
     public class Mod : BaseMod, IModSystem
     {
@@ -13,9 +15,9 @@ namespace KitchenMyMod
         // Mod Name is displayed to the player and listed in the mods menu
         // Mod Version must follow semver notation e.g. "1.2.3"
         public const string MOD_GUID = "com.example.mymod";
-        public const string MOD_NAME = "My Mod";
+        public const string MOD_NAME = "Animal Costumes Pack";
         public const string MOD_VERSION = "0.1.0";
-        public const string MOD_AUTHOR = "My Name";
+        public const string MOD_AUTHOR = "Rabby/ZeeMBT";
         public const string MOD_GAMEVERSION = ">=1.1.4";
         // Game version this mod is designed for in semver
         // e.g. ">=1.1.3" current and all future
@@ -41,7 +43,9 @@ namespace KitchenMyMod
         {
             LogInfo("Attempting to register game data...");
 
-            // AddGameDataObject<MyCustomGDO>();
+            AddGameDataObject<SharkOutfit>();
+            AddGameDataObject<RaptorOutfit>();
+            AddGameDataObject<CockatielOutfit>();
 
             LogInfo("Done loading game data.");
         }
@@ -55,9 +59,9 @@ namespace KitchenMyMod
             // TODO: Uncomment the following if you have an asset bundle.
             // TODO: Also, make sure to set EnableAssetBundleDeploy to 'true' in your ModName.csproj
 
-            // LogInfo("Attempting to load asset bundle...");
-            // Bundle = mod.GetPacks<AssetBundleModPack>().SelectMany(e => e.AssetBundles).First();
-            // LogInfo("Done loading asset bundle.");
+             LogInfo("Attempting to load asset bundle...");
+             Bundle = mod.GetPacks<AssetBundleModPack>().SelectMany(e => e.AssetBundles).First();
+             LogInfo("Done loading asset bundle.");
 
             // Register custom GDOs
             AddGameData();
